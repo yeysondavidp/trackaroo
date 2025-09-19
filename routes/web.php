@@ -34,6 +34,6 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',
 
     //Route::middleware(['role:supervisor|admin'])->group(function () {
 
-        Route::get('/projects', function () { return view('project.list');})->name('project.list');
+        Route::get('/projects',[HomeController::class, 'list'])->name('project.list');
     //});
 });

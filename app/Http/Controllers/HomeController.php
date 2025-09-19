@@ -23,6 +23,13 @@ class HomeController extends Controller
         return view('project.index', compact('project', 'user'));
     }
 
+    public function list()
+    {
+        $projects = Project::orderBy('created_at', 'desc')
+            ->paginate(10);
+        return view('project.list', compact('projects'));
+    }
+
     public function start($code)
     {
         // Buscar proyecto por código
