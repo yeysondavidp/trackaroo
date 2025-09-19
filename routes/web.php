@@ -28,12 +28,12 @@ Route::middleware(['role:admin'])->group(function () {
     Route::resource('/users', UserController::class);
 });*/
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
+Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', function () { return view('dashboard');})->name('dashboard');
+
+    //Route::middleware(['role:supervisor|admin'])->group(function () {
+
+        Route::get('/projects', function () { return view('project.list');})->name('project.list');
+    //});
 });
